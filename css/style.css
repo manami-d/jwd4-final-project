@@ -7,7 +7,12 @@
     background-color: navy;
 }
 
-
+/* copyright text become smaller */
+@media only screen and (max-width: 480px) {
+  footer p {
+    font-size: 0.9rem;
+  }
+}
 
 /* for Rating Selection */
 .rating {
@@ -17,7 +22,7 @@
     line-height: 20px;
     font-size: 25px;
   }
-  
+
   .rating label {
     position: absolute;
     top: 0;
