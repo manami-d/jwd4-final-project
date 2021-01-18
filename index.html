@@ -16,6 +16,9 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 
 </head>
 
@@ -32,7 +35,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- create new form column -->
-                <div class="col-4 pb-3 bg-form">
+                <div class="col-sm-12 col-md-4 pb-3 bg-form">
                     <form>
                         <!-- title for the form -->
                         <div class="row pt-3">
@@ -80,11 +83,11 @@
                                 </div>
 
                                 <!-- rating -->
-                                <div class="row py-3 justify-content-between">
-                                    <div class="col-5">
+                                <div class="row py-3 justify-items-center">
+                                    <div class="col-lg-12 col-xl-6">
                                         <p class="fw-bold"> How important? </p>
                                     </div>
-                                    <div class="col-5">
+                                    <div class="col-lg-12 col-xl-6">
                                         <div class="rating">
                                             <label>
                                                 <input type="radio" name="stars" value="1" />
@@ -130,6 +133,7 @@
                 </div>
 
                 <!-- outstaning task display column -->
+
                 <div class="col-8 bg-success">
                     <!-- zac card 1 -->
 
@@ -142,6 +146,7 @@
                     <!-- manami  card 5 -->
 
                     <!-- manami card 6 -->
+
                 </div>
             </div>
         </div>
@@ -149,8 +154,19 @@
 
     <!-- footer section -->
     <footer>
-        <div class="container-fluid bg-info">
-            <p> <i class="fas fa-phone-alt"></i> (02) 6543 8976 <i class="fas fa-envelope"></i> help@todolistcompany.com.au <i class="fas fa-map-pin"></i> 17 Elizabeth Street, Sydney. NSW, 2000, Australia </p>
+        <div class="container-fluid">
+            <div class="row bg-header text-light p-3 fs-5">
+                <div class="col-6 col-lg-9 text-start align-self-center">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><i class="fa fa-phone fa-sm"><span class="d-none d-lg-inline fs-5"> 02 6543 8976</span> </i></li>
+                        <li class="list-inline-item"><i class="fa fa-edit fa-sm"><span class="d-none d-lg-inline fs-5"> help@todolistcompany.com.au </span> </i></li>
+                        <li class="list-inline-item"><i class="fa fa-building fa-sm"><span class="d-none d-lg-inline fs-5"> 17 Elizabeth Street, Sydney, NSW 2000 Australia </span></i></li>
+                    </ul>
+                </div>    
+                <div class="col-6 col-lg-3 text-end align-self-center">
+                    <p class="m-0"> &copy; 2020 MaWiZac</p>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
