@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Planner</title>
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <!-- CSS only -->
@@ -16,7 +15,10 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -33,7 +35,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- create new form column -->
-                <div class="col-4 pb-3 bg-form">
+                <div class="col-sm-12 col-md-4 pb-3 bg-form">
                     <form>
                         <!-- title for the form -->
                         <div class="row pt-3">
@@ -81,11 +83,11 @@
                                 </div>
 
                                 <!-- rating -->
-                                <div class="row py-3 justify-content-between">
-                                    <div class="col-5">
+                                <div class="row py-3 justify-items-center">
+                                    <div class="col-lg-12 col-xl-6">
                                         <p class="fw-bold"> How important? </p>
                                     </div>
-                                    <div class="col-5">
+                                    <div class="col-lg-12 col-xl-6">
                                         <div class="rating">
                                             <label>
                                                 <input type="radio" name="stars" value="1" />
@@ -130,12 +132,65 @@
                     </form>
                 </div>
 
-                <!-- outstaning task display column -->
+                <!-- outstanding task display column -->
+
                 <div class="col-8 bg-success">
                     <!-- zac card 1 -->
-
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="card-title">Watch the New James Bond Movie</h5>
+                                    <p class="card-text">Watch No Time to Die</p>
+                                    <p class="card-text">Zac</p>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="justify-self-right"> * * * * * </h5>
+                                      <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Start: 19 Jan 2021</li>
+                                          <li class="list-group-item">Due: 15 Mar 2021</li>   
+                                      </ul>        
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fa fa-hourglass fa-sm"><span class="d-none d-lg-inline fs-5">In Progress</span></i>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fa fa-check fa-sm"></i>
+                                            <i class="fa fa-pencil fa-sm"></i>
+                                            <i class="fa fa-trash fa-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
                     <!-- zac card 2 -->
-
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="card-title">Take the dog on a walk</h5>
+                                    <p class="card-text">Take Missy for a walk to the park on Saturday</p>
+                                    <p class="card-text">Zac</p>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="justify-self-right"> * * * * * </h5>
+                                      <ul class="list-group list-group-flush">
+                                          <li class="list-group-item">Start: 19 Jan 2021</li>
+                                          <li class="list-group-item">Due: 23 Jan 2021</li>   
+                                      </ul>        
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fa fa-hourglass fa-sm"><span class="d-none d-lg-inline fs-5">In Progress</span></i>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fa fa-check fa-sm"></i>
+                                            <i class="fa fa-pencil fa-sm"></i>
+                                            <i class="fa fa-trash fa-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
                     <!-- will card 3 -->
                     
                     <!-- will card 4 -->
@@ -173,6 +228,7 @@
                     </div>
 
                     <!-- manami card 6 -->
+<<<<<<< HEAD
                     <div class="card" style="width: 30rem;">
                         <div class="card-body">
                             <div class="row">
@@ -203,6 +259,8 @@
                             </div>
                         </div>
                     </div>
+=======
+>>>>>>> main
 
                 </div>
             </div>
@@ -211,8 +269,19 @@
 
     <!-- footer section -->
     <footer>
-        <div class="container-fluid bg-info">
-            <p> <i class="fas fa-phone-alt"></i> (02) 6543 8976 <i class="fas fa-envelope"></i> help@todolistcompany.com.au <i class="fas fa-map-pin"></i> 17 Elizabeth Street, Sydney. NSW, 2000, Australia </p>
+        <div class="container-fluid">
+            <div class="row bg-header text-light p-3 fs-5">
+                <div class="col-6 col-lg-9 text-start align-self-center">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><i class="fa fa-phone fa-sm"><span class="d-none d-lg-inline fs-5"> 02 6543 8976</span> </i></li>
+                        <li class="list-inline-item"><i class="fa fa-edit fa-sm"><span class="d-none d-lg-inline fs-5"> help@todolistcompany.com.au </span> </i></li>
+                        <li class="list-inline-item"><i class="fa fa-building fa-sm"><span class="d-none d-lg-inline fs-5"> 17 Elizabeth Street, Sydney, NSW 2000 Australia </span></i></li>
+                    </ul>
+                </div>    
+                <div class="col-6 col-lg-3 text-end align-self-center">
+                    <p class="m-0"> &copy; 2020 MaWiZac</p>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
