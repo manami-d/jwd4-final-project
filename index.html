@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,88 +9,140 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
 
 </head>
+
 <body>
     <!-- header section -->
     <header>
-        <div class="container-fluid" style="text-align: center; background-color: navy; color: white;">
-            <h1>To Do List App</h1>
+        <div class="container-fluid py-3 bg-header">
+            <h1 class="text-center text-light">To Do List App</h1>
         </div>
     </header>
 
     <!-- main section -->
     <main>
         <div class="container-fluid">
-            <div class="row bg-secondary">
+            <div class="row">
                 <!-- create new form column -->
-                <div class="col-4 bg-primary">
-                    <!-- title for the form -->
-                    <div class="row bg-secondary">
-                        <h1>Create a New List</h1>
-                    </div>
-                    <br>
-                    <!-- task name label & input -->
-                    <div class="row bg-info">
-                        <label for="InputTaskName">Task Name</label>
-                        <input type="text" class="form-control" id="InputTaskName" aria-describedby="TaskName" placeholder="Enter Task Name">
-                    </div>
+                <div class="col-4 pb-3 bg-form">
+                    <form>
+                        <!-- title for the form -->
+                        <div class="row pt-3">
+                            <h1 class="text-center">Create a New List</h1>
+                        </div>
 
-                    <!-- description label & input -->
-                    <div class="row bg-secondary">
-                        <label for="InputDescription">Description</label>
-                        <input type="text" class="form-control" id="InputTaskDescription" aria-describedby="TaskDescription" placeholder="Enter Task Description">
-                    </div>
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                <!-- task name label & input -->
+                                <div class="row py-3">
+                                    <label class="pb-2 fw-bold" for="InputTaskName">Task Name</label>
+                                    <input type="text" class="form-control" id="InputTaskName"
+                                        aria-describedby="TaskName" placeholder="Enter Task Name">
+                                </div>
 
-                    <!-- Due date label & input -->
-                    <div class="row bg-info">                                                                                         
-                      <label for="duedate">Due date</label>
-                      <input type="date" id="duedate" name="duedate" value="YYYY-MM-DD">                                                                   
-                    </div>
-                    
-                    <!-- assigned to label & input -->
-                    <div class="row bg-secondary">
-                        <label for="assinged-name">Assigned to</label>
-                        <input type="text" id="assigned-name" name="assigned-name" placeholder="Enter Asignee's Name">
-                    </div>
+                                <!-- description label & input -->
+                                <div class="row py-3">
+                                    <label class="pb-2 fw-bold" for="InputDescription">Description</label>
+                                    <input type="text" class="form-control" id="InputTaskDescription"
+                                        aria-describedby="TaskDescription" placeholder="Enter Task Description">
+                                </div>
 
-                    <!-- Progress label & input     -->
-                    <div class="row bg-info">
-    
-                      <select id="task-status">
-                        <option selected>In Progress</option>
-                        <option>Done</option>
-                        <option>Postphoned</option>
-                      </select>
-                    </div>
+                                <!-- Due date label & input -->
+                                <div class="row py-3">
+                                    <label class="pb-2 fw-bold" for="duedate">Due date:</label>
+                                    <input class="py-1" type="date" id="duedate" name="duedate" value="YYYY-MM-DD">
+                                </div>
 
-                    <!-- rating -->
-                    <div class="row bg-secondary">
-                        G
-                    </div>
+                                <!-- assigned to label & input -->
+                                <div class="row py-3">
+                                    <!-- E -->
+                                    <label class="pb-2 fw-bold" for="assinged-name">Assigned to:</label>
+                                    <input class="py-1" type="text" id="assigned-name" name="assigned-name">
+                                </div>
 
-                    <!-- button -->
-                    <div class="row bg-info">
-                        H
-                    </div>
+                                <!-- Progress label & input     -->
+                                <div class="row py-3">
+
+                                    <!-- F -->
+                                    <select class="py-2 fw-bold" id="task-status">
+                                        <option selected>In Progress</option>
+                                        <option>Done</option>
+                                        <option>Postphoned</option>
+                                    </select>
+                                </div>
+
+                                <!-- rating -->
+                                <div class="row py-3 justify-content-between">
+                                    <div class="col-5">
+                                        <p class="fw-bold"> How important? </p>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="rating">
+                                            <label>
+                                                <input type="radio" name="stars" value="1" />
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="2" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="3" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="4" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="5" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- button -->
+                                <div class="row py-3 justify-content-center">
+                                    <button type="submit" class="btn btn-primary h-100% w-50">Add!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <!-- outstanind task display column -->
+                <!-- outstaning task display column -->
                 <div class="col-8 bg-success">
                     TEXT
                 </div>
             </div>
         </div>
-
-
     </main>
 
     <!-- footer section -->
     <footer>
-        <p> FOOTER </p>
+        <div class="container-fluid bg-info">
+            <p> FOOTER </p>
+        </div>
     </footer>
 </body>
+
 </html>
