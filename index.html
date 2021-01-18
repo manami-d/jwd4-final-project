@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Planner</title>
 
+    <link rel="stylesheet" href="style.css">
+
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
@@ -14,8 +16,8 @@
 <body>
     <!-- header section -->
     <header>
-        <div class="container-fluid">
-            <p>HEADER</p>
+        <div class="container-fluid" style="text-align: center; background-color: navy; color: white;">
+            <h1>To Do List App</h1>
         </div>
     </header>
 
@@ -44,20 +46,19 @@
 
                     <!-- Due date label & input -->
                     <div class="row bg-info">                                                                                         
-                      <label for="duedate">Due date:</label>
+                      <label for="duedate">Due date</label>
                       <input type="date" id="duedate" name="duedate" value="YYYY-MM-DD">                                                                   
                     </div>
                     
                     <!-- assigned to label & input -->
                     <div class="row bg-secondary">
-                        <!-- E -->
-                        <label for="assinged-name">Assigned to:</label>
-                        <input type="text" id="assigned-name" name="assigned-name">
+                        <label for="assinged-name">Assigned to</label>
+                        <input type="text" id="assigned-name" name="assigned-name" placeholder="Enter Asignee's Name">
                     </div>
 
                     <!-- Progress label & input     -->
                     <div class="row bg-info">
-                        <!-- F -->
+    
                       <select id="task-status">
                         <option selected>In Progress</option>
                         <option>Done</option>
