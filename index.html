@@ -43,18 +43,26 @@
                     </div>
 
                     <!-- Due date label & input -->
-                    <div class="row bg-info">
-                        D
+                    <div class="row bg-info">                                                                                         
+                      <label for="duedate">Due date:</label>
+                      <input type="date" id="duedate" name="duedate" value="YYYY-MM-DD">                                                                   
                     </div>
-
+                    
                     <!-- assigned to label & input -->
                     <div class="row bg-secondary">
-                        E
+                        <!-- E -->
+                        <label for="assinged-name">Assigned to:</label>
+                        <input type="text" id="assigned-name" name="assigned-name">
                     </div>
 
                     <!-- Progress label & input     -->
                     <div class="row bg-info">
-                        F
+                        <!-- F -->
+                      <select id="task-status">
+                        <option selected>In Progress</option>
+                        <option>Done</option>
+                        <option>Postphoned</option>
+                      </select>
                     </div>
 
                     <!-- rating -->
