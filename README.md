@@ -10,4 +10,5 @@ This project is created by:
 - Manami
 - Zac
 - Will
+- Zoe
 
