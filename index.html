@@ -19,6 +19,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="./index.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
             <div class="row">
                 <!-- create new form column -->
                 <div class="col-sm-12 col-md-4 pb-3 bg-form">
-                    <form>
+                    <form id="todo-form" name="todoform" class="needs-validation">
                         <!-- title for the form -->
                         <div class="row pt-3">
                             <h1 class="text-center">Create a New List</h1>
@@ -47,40 +48,53 @@
                                 <div class="row py-3">
                                     <label class="pb-2 fw-bold" for="InputTaskName">Task Name:</label>
                                     <input type="text" class="form-control" id="InputTaskName"
-                                        aria-describedby="TaskName" placeholder="Enter Task Name">
+                                    aria-describedby="TaskName" placeholder="Enter Task Name" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Task Name needs to be 5 characters long or more
+                                    </div>    
                                 </div>
-
+                                
                                 <!-- description label & input -->
                                 <div class="row py-3">
                                     <label class="pb-2 fw-bold" for="InputDescription">Description:</label>
                                     <input type="text" class="form-control" id="InputTaskDescription"
-                                        aria-describedby="TaskDescription" placeholder="Enter Task Description">
+                                    aria-describedby="TaskDescription" placeholder="Enter Task Description" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Description needs to be 5 characters long or more
+                                    </div>    
                                 </div>
-
+                                
                                 <!-- Due date label & input -->
                                 <div class="row py-3">
                                     <label class="pb-2 fw-bold" for="duedate">Due date:</label>
-                                    <input class="py-1" type="date" id="duedate" name="duedate" value="YYYY-MM-DD">
+                                    <input class="py-1 form-control" type="date" id="duedate" name="duedate" value="YYYY-MM-DD" required>
                                 </div>
-
+                                
                                 <!-- assigned to label & input -->
                                 <div class="row py-3">
                                     <!-- E -->
-                                    <label class="pb-2 fw-bold" for="assinged-name">Assigned to:</label>
-                                    <input class="py-1" type="text" id="assigned-name" name="assigned-name" placeholder="Enter Assignee's Name">
+                                    <label class="pb-2 fw-bold" for="assigned-name">Assigned to:</label>
+                                    <input class="py-1 form-control" type="text" id="assigned-name" name="assigned-name" placeholder="Enter Assignee's Name" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Assigned Name needs to be 5 characters long or more
+                                    </div>    
                                 </div>
-
+                                
                                 <!-- Progress label & input     -->
                                 <div class="row py-3">
-
+                                    
                                     <!-- F -->
-                                    <select class="py-2 fw-bold" id="task-status">
-                                        <option selected>In Progress</option>
+                                    <select class="py-2 form-control" id="task-status" required>
+                                        <option disabled selected value>Select task status</option>
+                                        <option>In Progress</option>
                                         <option>Completed</option>
                                         <option>Postponed</option>
                                     </select>
                                 </div>
-
+                                
                                 <!-- rating -->
                                 <div class="row py-3 justify-items-center">
                                     <div class="col-lg-12 col-xl-6">
@@ -137,6 +151,18 @@
                         <h1 class="text-center">Outstanding Tasks</h1>
                     </div>
                     <div class="row">
+                        <div class="col-lg-12 col-xl-6 my-3">
+                            <!-- zac card 1 -->
+                            <div class="card" style="max-width: 30rem;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                        <p id="output"></p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-12 col-xl-6 my-3">
                             <!-- zac card 1 -->
                             <div class="card" style="max-width: 30rem;">
