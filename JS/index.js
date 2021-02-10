@@ -8,8 +8,10 @@ const taskStatus = document.querySelector('#task-status');
 let rate = 0;
 
 // Disable selection of date prior to today's date in html date selector
-const today = new Date().toISOString().slice(0, 10);
+const todayInput = new Date().toLocaleString().slice(0, 10);
+let today = todayInput.split('/').reverse().join('-');
 document.getElementById('duedate').setAttribute('min', today);
+console.log(today);
 
 // getting the rating value from user
 document.forms.todoform.stars.forEach((radio) => {
@@ -54,9 +56,11 @@ formValidator.addEventListener('submit', (event) => {
         Task Status : ${taskStatus.value} <br>
         Task Rating : ${'⭐️'.repeat(rate)} <br>
         `;
-        taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, taskStatus.value, rate)
+        taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate)
         console.log(taskApp)
         
+        const taskHtml = createTaskHtml(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
+        console.log(taskHtml);
         clearForm();
     }
     // console.log(taskAssign.value);
@@ -68,17 +72,3 @@ formValidator.addEventListener('submit', (event) => {
 });
 
 
-// Step 4: Adding Tasks With The Form
-// In this final step, we will use the TaskManager class to keep track of tasks we add with the New Task form.
-
-// Useful Resources for this step
-// Document.querySelector()
-// EventTarget.addEventListener()
-// Event Reference
-// preventDefault
-// Make sure a new TaskManager is initialized at the top of the file.
-// In index.js using the eventListener created for the form validation, create some logic to ensure the following events only happen if all the inputs are valid.
-// When the submit event fires, call the taskManager's addTask method passing in your form's input.
-// Note: Make sure to prevent the default action of the form!
-// Clear the values from each form input, ready for the next submission.
- 
