@@ -5,23 +5,63 @@ const taskDesc = document.querySelector('#InputTaskDescription');
 const taskDueDate = document.querySelector('#duedate');
 const taskAssign = document.querySelector('#assigned-name');
 const taskStatus = document.querySelector('#task-status');
-let rate = 0;
+let rate = 1;
 
 // Disable selection of date prior to today's date in html date selector
 const todayInput = new Date().toLocaleDateString();
 console.log(todayInput);
 const splitDate = todayInput.split('/');
-if (splitDate[0] < 10) { splitDate[0] = `0${splitDate[0]}`; }
-if (splitDate[1] < 10) { splitDate[1] = `0${splitDate[1]}`; }
+if (splitDate[0] < 10 && splitDate[0].length < 2) { splitDate[0] = `0${splitDate[0]}`; }
+if (splitDate[1] < 10 && splitDate[1].length < 2) { splitDate[1] = `0${splitDate[1]}`; }
 const today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
 document.getElementById('duedate').setAttribute('min', today);
 console.log(today);
-
-// let date1 = new Date(Date.now());
-// const todayTry1 = date1.getFullYear() + "/" + (date1.getMonth() + 1) + "/" + date1.getDate();
-// document.getElementById('duedate').setAttribute('min', todayTry1);
-// console.log(todayInput);
-// console.log(today);
+function isValidDate(dateString) {
+    // Date format: YYYY-MM-DD
+    const datePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
+    // Check if the date string format is a match
+    const matchArray = dateString.match(datePattern);
+    if (matchArray == null) {
+        return false;
+    }
+    // Remove any non digit characters
+    const cleanDateString = dateString.replace(/\D/g, '');
+    // Parse integer values from date string
+    const year = parseInt(cleanDateString.substr(0, 4));
+    const month = parseInt(cleanDateString.substr(4, 2));
+    const day = parseInt(cleanDateString.substr(6, 2));
+    // Define number of days per month
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    // Adjust for leap years
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+        daysInMonth[1] = 29;
+    }
+    // check month and day range
+    if (month < 1 || month > 12 || day < 1 || day > daysInMonth[month - 1]) {
+        return false;
+    }
+    // You made it through!
+    return true;
+}
+// validating date input
+const validateDate = (dateString) => {
+    const tdyDate = new Date(today);
+    console.log(tdyDate);
+    const inDate = new Date(dateString.value);
+    console.log(inDate);
+    if (+inDate < +tdyDate) {
+        console.log('Smalleer!');
+    } else {
+        console.log('looks ok!!');
+    }
+    if (isValidDate(dateString.value) && +inDate >= +tdyDate) {
+        dateString.classList.add('is-valid');
+        dateString.classList.remove('is-invalid');
+    } else {
+        dateString.classList.add('is-invalid');
+        dateString.classList.remove('is-valid');
+    }
+};
 
 // getting the rating value from user
 document.forms.todoform.stars.forEach((radio) => {
@@ -47,6 +87,7 @@ const clearForm = () => {
     taskInput.classList.remove('is-valid');
     taskDesc.classList.remove('is-valid');
     taskAssign.classList.remove('is-valid');
+    taskDueDate.classList.remove('is-valid');
 };
 
 // Validating inputs & selection from user
@@ -55,7 +96,8 @@ formValidator.addEventListener('submit', (event) => {
     validFormFieldInput(taskInput);
     validFormFieldInput(taskDesc);
     validFormFieldInput(taskAssign);
-    if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid')) {
+    validateDate(taskDueDate);
+    if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid') && taskDueDate.classList.contains('is-valid')) {
         taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
         console.log(taskApp);
         taskApp.render();

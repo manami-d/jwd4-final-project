@@ -47,12 +47,12 @@ class TaskManager {
 
     render() {
         const tasksHtmlList = [];
+        
         this.tasks.forEach((item) => {
-            const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, item.dueDate, item.createdDay, item.status, item.rating);
-            tasksHtmlList.push(taskHtml);
-        // let date = new Date(item.dueDate);
-        // const todayTry = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
-        // const formattedDate = new Date(todayTry[0], todayTry[2]-1, todayTry[1])
+          const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
+          const formattedDueDate = item.dueDate.split('-').reverse().join('-');
+          const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
+          tasksHtmlList.push(taskHtml);
         });
         const tasksHtml = tasksHtmlList.join('\n');
         const tasksList = document.querySelector('#taskOutput');
