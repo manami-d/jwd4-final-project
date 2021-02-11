@@ -1,4 +1,4 @@
-let taskApp = new TaskManager();
+const taskApp = new TaskManager();
 const formValidator = document.querySelector('#todo-form');
 const taskInput = document.querySelector('#InputTaskName');
 const taskDesc = document.querySelector('#InputTaskDescription');
@@ -12,8 +12,8 @@ const todayInput = new Date().toLocaleDateString();
 console.log(todayInput);
 const splitDate = todayInput.split('/');
 if (splitDate[0] < 10) { splitDate[0] = `0${splitDate[0]}`; }
-if (splitDate[1] < 10) { splitDate[1] = `0${splitDate[1]}`; } 
-let today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
+if (splitDate[1] < 10) { splitDate[1] = `0${splitDate[1]}`; }
+const today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
 document.getElementById('duedate').setAttribute('min', today);
 console.log(today);
 
@@ -36,7 +36,6 @@ const validFormFieldInput = (data) => {
     if (data.value.length < 5) {
         data.classList.add('is-invalid');
         data.classList.remove('is-valid');
-   
     } else {
         data.classList.add('is-valid');
         data.classList.remove('is-invalid');
@@ -44,11 +43,11 @@ const validFormFieldInput = (data) => {
 };
 
 const clearForm = () => {
-  formValidator.reset(); 
-  taskInput.classList.remove('is-valid');
-  taskDesc.classList.remove('is-valid');
-  taskAssign.classList.remove('is-valid');
-}
+    formValidator.reset();
+    taskInput.classList.remove('is-valid');
+    taskDesc.classList.remove('is-valid');
+    taskAssign.classList.remove('is-valid');
+};
 
 // Validating inputs & selection from user
 formValidator.addEventListener('submit', (event) => {
@@ -57,28 +56,25 @@ formValidator.addEventListener('submit', (event) => {
     validFormFieldInput(taskDesc);
     validFormFieldInput(taskAssign);
     if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid')) {
-        // document.querySelector('#output').innerHTML = `
-        // Task Name : ${taskInput.value} <br>
-        // Task Description : ${taskDesc.value} <br>
-        // Today's Date: ${today} <br>
-        // Task Date : ${taskDueDate.value} <br>
-        // Assigned To : ${taskAssign.value} <br>
-        // Task Status : ${taskStatus.value} <br>
-        // Task Rating : ${'⭐️'.repeat(rate)} <br>
-        // `;
-        taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate)
-        console.log(taskApp)
+        taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
+        console.log(taskApp);
         taskApp.render();
-        // const taskHtml = createTaskHtml(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
-        // console.log(taskHtml);
         clearForm();
     }
-    // console.log(taskAssign.value);
-    // console.log(taskDueDate.value);
-    // console.log(taskDesc.value);
-    // console.log(taskInput.value);
-    // console.log(taskStatus.value);
-    // console.log(rate);    
 });
 
+const taskList = document.querySelector('#taskOutput');
 
+taskList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('done-button')) {
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        const findId = Number(parentTask.attributes['data-task-id'].value);
+        console.log(parentTask);
+        console.log(`Id to find: ${findId}`);
+        const task = taskApp.getTaskById(findId);
+        console.log(task);
+        task[0].status = 'Completed';
+
+        taskApp.render();
+    }
+});
