@@ -1,5 +1,6 @@
 const createTaskHtml = (name, description, assignedTo, dueDate, createdDay, status, rating) => {
-  const html = `  
+   const html = `  
+   <div class="col-lg-12 col-xl-6 my-3">
       <div class="card" style="max-width: 30rem;">
         <div class="card-body">
           <div class="row">
@@ -11,8 +12,8 @@ const createTaskHtml = (name, description, assignedTo, dueDate, createdDay, stat
             <div class="col-6 text-end">
                 <h5>${'⭐'.repeat(rating)}</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${createdDay}</li>
-                    <li class="list-group-item">${dueDate}</li>
+                    <li class="list-group-item">Created : ${createdDay}</li>
+                    <li class="list-group-item">Due Date : ${dueDate}</li>
                 </ul>
             </div>
             <div class="card-footer bg-primary text-light">
@@ -34,6 +35,7 @@ const createTaskHtml = (name, description, assignedTo, dueDate, createdDay, stat
           </div>
         </div>
       </div>
+      </div>
   `;
   return html;
 }
@@ -42,6 +44,22 @@ class TaskManager {
         this.tasks = [];
         this.currentId = currentId;
     }
+    render(){
+      const tasksHtmlList = [];
+      this.tasks.forEach(item => {
+        const taskHtml = createTaskHtml(item.name, item.description, item.assignedTo, item.dueDate, item.createdDay, item.status, item.rating)
+        tasksHtmlList.push(taskHtml);
+        // let date = new Date(item.dueDate);
+        // const todayTry = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+        // const formattedDate = new Date(todayTry[0], todayTry[2]-1, todayTry[1])
+      })
+      const tasksHtml = tasksHtmlList.join('\n');
+      const tasksList = document.querySelector("#taskOutput");
+      tasksList.innerHTML = tasksHtml;
+    }
+
+  
+
     addTask(name, description, assignedTo, dueDate, createdDay, status, rating) {
         const task = {
             Id: this.currentId++,

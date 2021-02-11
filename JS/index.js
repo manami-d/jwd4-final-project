@@ -8,10 +8,20 @@ const taskStatus = document.querySelector('#task-status');
 let rate = 0;
 
 // Disable selection of date prior to today's date in html date selector
-const todayInput = new Date().toLocaleString().slice(0, 10);
-let today = todayInput.split('/').reverse().join('-');
+const todayInput = new Date().toLocaleDateString();
+console.log(todayInput);
+const splitDate = todayInput.split('/');
+if (splitDate[0] < 10) { splitDate[0] = `0${splitDate[0]}`; }
+if (splitDate[1] < 10) { splitDate[1] = `0${splitDate[1]}`; } 
+let today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
 document.getElementById('duedate').setAttribute('min', today);
 console.log(today);
+
+// let date1 = new Date(Date.now());
+// const todayTry1 = date1.getFullYear() + "/" + (date1.getMonth() + 1) + "/" + date1.getDate();
+// document.getElementById('duedate').setAttribute('min', todayTry1);
+// console.log(todayInput);
+// console.log(today);
 
 // getting the rating value from user
 document.forms.todoform.stars.forEach((radio) => {
@@ -47,20 +57,20 @@ formValidator.addEventListener('submit', (event) => {
     validFormFieldInput(taskDesc);
     validFormFieldInput(taskAssign);
     if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid')) {
-        document.querySelector('#output').innerHTML = `
-        Task Name : ${taskInput.value} <br>
-        Task Description : ${taskDesc.value} <br>
-        Today's Date: ${today} <br>
-        Task Date : ${taskDueDate.value} <br>
-        Assigned To : ${taskAssign.value} <br>
-        Task Status : ${taskStatus.value} <br>
-        Task Rating : ${'⭐️'.repeat(rate)} <br>
-        `;
+        // document.querySelector('#output').innerHTML = `
+        // Task Name : ${taskInput.value} <br>
+        // Task Description : ${taskDesc.value} <br>
+        // Today's Date: ${today} <br>
+        // Task Date : ${taskDueDate.value} <br>
+        // Assigned To : ${taskAssign.value} <br>
+        // Task Status : ${taskStatus.value} <br>
+        // Task Rating : ${'⭐️'.repeat(rate)} <br>
+        // `;
         taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate)
         console.log(taskApp)
-        
-        const taskHtml = createTaskHtml(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
-        console.log(taskHtml);
+        taskApp.render();
+        // const taskHtml = createTaskHtml(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
+        // console.log(taskHtml);
         clearForm();
     }
     // console.log(taskAssign.value);
