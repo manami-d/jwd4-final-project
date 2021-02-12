@@ -8,24 +8,20 @@ const taskStatus = document.querySelector('#task-status');
 let rate = 1;
 
 // Disable selection of date prior to today's date in html date selector
-const todayInput = new Date().toLocaleDateString();
+const todayInput = new Date();
+let todayDay = todayInput.getDate().toString();
+let todayMonth = (todayInput.getMonth() + 1).toString();
+const todayYear = todayInput.getFullYear().toString();    
 console.log(todayInput);
-const splitDate = todayInput.split('/');
-if (splitDate[0] < 10 && splitDate[0].length < 2) { splitDate[0] = `0${splitDate[0]}`; }
-if (splitDate[1] < 10 && splitDate[1].length < 2) { splitDate[1] = `0${splitDate[1]}`; }
-let today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
-console.log(today);
-   const CheckTodaysDate = new Date(today); 
-   const todayLocalDate = new Date(todayInput);
-    if (CheckTodaysDate !== todayLocalDate) {
-        today = `${splitDate[2]}-${splitDate[0]}-${splitDate[1]}`;
-    };
-    console.log(CheckTodaysDate); 
-    console.log(todayLocalDate);
-    console.log(today);
-
-
+console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);
+console.log(todayMonth.length);
+if (todayDay.length < 2) { todayDay = `0${todayDay}`; }
+if (todayMonth.length < 2) { todayMonth = `0${todayMonth}`; }
+console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);    
+const today = `${todayYear}-${todayMonth}-${todayDay}`;
+console.log(today);    
 document.getElementById('duedate').setAttribute('min', today);
+
 function isValidDate(dateString) {
     // Date format: YYYY-MM-DD
     const datePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
@@ -120,13 +116,14 @@ const taskList = document.querySelector('#taskOutput');
 taskList.addEventListener('click', (event) => {
     if (event.target.classList.contains('done-button')) {
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        console.log(event.target);
         const findId = Number(parentTask.attributes['data-task-id'].value);
         console.log(parentTask);
         console.log(`Id to find: ${findId}`);
         const task = taskApp.getTaskById(findId);
         console.log(task);
         task[0].status = 'Completed';
-
+        document.querySelector(".done-button").style.visibility = "none";
         taskApp.render();
     }
 });

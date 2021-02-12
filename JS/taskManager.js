@@ -26,7 +26,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                       </i>
                     </div>
                     <div class="col-6 text-end">
-                      <button class="btn btn-primary done-button"><i class="fa fa-check fa-sm">&nbsp;&nbsp;</i></button>
+                      <button class="btn btn-primary done-button">Done</button>
                       <button class="btn btn-primary"><i class="fa fa-pencil fa-sm">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-trash fa-sm">&nbsp;&nbsp;</i></button>
                     </div>
