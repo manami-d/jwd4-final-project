@@ -26,7 +26,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                       </i>
                     </div>
                     <div class="col-6 text-end">
-                      <button class="btn btn-primary done-button">Done</button>
+                      <a class="${status === "Completed" ? "invisible" : "btn btn-primary done-button"}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></a>
                       <button class="btn btn-primary"><i class="fa fa-pencil fa-sm">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-trash fa-sm">&nbsp;&nbsp;</i></button>
                     </div>
