@@ -13,9 +13,19 @@ console.log(todayInput);
 const splitDate = todayInput.split('/');
 if (splitDate[0] < 10 && splitDate[0].length < 2) { splitDate[0] = `0${splitDate[0]}`; }
 if (splitDate[1] < 10 && splitDate[1].length < 2) { splitDate[1] = `0${splitDate[1]}`; }
-const today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
-document.getElementById('duedate').setAttribute('min', today);
+let today = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
 console.log(today);
+   const CheckTodaysDate = new Date(today); 
+   const todayLocalDate = new Date(todayInput);
+    if (CheckTodaysDate !== todayLocalDate) {
+        today = `${splitDate[2]}-${splitDate[0]}-${splitDate[1]}`;
+    };
+    console.log(CheckTodaysDate); 
+    console.log(todayLocalDate);
+    console.log(today);
+
+
+document.getElementById('duedate').setAttribute('min', today);
 function isValidDate(dateString) {
     // Date format: YYYY-MM-DD
     const datePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
