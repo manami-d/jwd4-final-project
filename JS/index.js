@@ -123,7 +123,6 @@ taskList.addEventListener('click', (event) => {
         const task = taskApp.getTaskById(findId);
         console.log(task);
         task[0].status = 'Completed';
-        document.querySelector(".done-button").style.visibility = "none";
         taskApp.render();
     }
 });
