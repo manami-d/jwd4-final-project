@@ -26,7 +26,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                       </i>
                     </div>
                     <div class="col-6 text-end">
-                      <a class="${status === "Completed" ? "invisible" : "btn btn-primary done-button"}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></a>
+                      <button class="${status === 'Completed' ? 'invisible' : 'btn btn-primary done-button'}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-pencil fa-sm">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-trash fa-sm">&nbsp;&nbsp;</i></button>
                     </div>
@@ -47,16 +47,24 @@ class TaskManager {
 
     render() {
         const tasksHtmlList = [];
-        
-        this.tasks.forEach((item) => {
-          const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
-          const formattedDueDate = item.dueDate.split('-').reverse().join('-');
-          const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
-          tasksHtmlList.push(taskHtml);
-        });
-        const tasksHtml = tasksHtmlList.join('\n');
         const tasksList = document.querySelector('#taskOutput');
-        tasksList.innerHTML = tasksHtml;
+
+        if (this.tasks.length === 0) {
+            const imgTag = document.createElement('img');
+            const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
+            imgTag.src = `./Images/${randomPicture}`;
+            tasksList.appendChild(imgTag);
+        } else {
+            this.tasks.forEach((item) => {
+                const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
+                const formattedDueDate = item.dueDate.split('-').reverse().join('-');
+                const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
+                tasksHtmlList.push(taskHtml);
+            });
+
+            const tasksHtml = tasksHtmlList.join('\n');
+            tasksList.innerHTML = tasksHtml;
+        }
     }
 
     addTask(name, description, assignedTo, dueDate, createdDay, status, rating) {
