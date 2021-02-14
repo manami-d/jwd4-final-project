@@ -106,6 +106,7 @@ formValidator.addEventListener('submit', (event) => {
     if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid') && taskDueDate.classList.contains('is-valid')) {
         taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
         console.log(taskApp);
+        taskApp.save();
         taskApp.render();
         clearForm();
     }
@@ -123,6 +124,7 @@ taskList.addEventListener('click', (event) => {
         const task = taskApp.getTaskById(findId);
         console.log(task);
         task[0].status = 'Completed';
+        taskApp.save();
         taskApp.render();
     }
 });
