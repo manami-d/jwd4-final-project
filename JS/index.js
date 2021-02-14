@@ -11,15 +11,15 @@ let rate = 1;
 const todayInput = new Date();
 let todayDay = todayInput.getDate().toString();
 let todayMonth = (todayInput.getMonth() + 1).toString();
-const todayYear = todayInput.getFullYear().toString();    
+const todayYear = todayInput.getFullYear().toString();
 console.log(todayInput);
 console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);
 console.log(todayMonth.length);
 if (todayDay.length < 2) { todayDay = `0${todayDay}`; }
 if (todayMonth.length < 2) { todayMonth = `0${todayMonth}`; }
-console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);    
+console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);
 const today = `${todayYear}-${todayMonth}-${todayDay}`;
-console.log(today);    
+console.log(today);
 document.getElementById('duedate').setAttribute('min', today);
 
 function isValidDate(dateString) {
