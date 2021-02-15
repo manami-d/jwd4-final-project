@@ -1,4 +1,6 @@
 const taskApp = new TaskManager();
+taskApp.load();
+taskApp.render();
 const formValidator = document.querySelector('#todo-form');
 const taskInput = document.querySelector('#InputTaskName');
 const taskDesc = document.querySelector('#InputTaskDescription');
