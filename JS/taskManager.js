@@ -26,7 +26,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                       </i>
                     </div>
                     <div class="col-6 text-end">
-                      <a class="${status === "Completed" ? "invisible" : "btn btn-primary done-button"}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></a>
+                      <button class="${status === "Completed" ? "invisible" : "btn btn-primary done-button"}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-pencil fa-sm">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-trash fa-sm">&nbsp;&nbsp;</i></button>
                     </div>
@@ -85,5 +85,17 @@ class TaskManager {
       localStorage.setItem("tasks", tasksJson);
       const currentId = String(this.currentId);
       localStorage.setItem("currentId", currentId);
-    }; 
+    }
+    
+    load() {
+      if (localStorage.getItem("tasks")) {
+        const tasksJson = localStorage.getItem("tasks");
+        this.tasks = JSON.parse(tasksJson);
+      }
+      if (localStorage.getItem("currentId")) {
+        const currentId = localStorage.getItem("currentId");
+        this.currentId = Number(currentId);
+      }
+      
+    }
 }
