@@ -27,8 +27,8 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                     </div>
                     <div class="col-6 text-end">
                       <button class="${status === "Completed" ? "invisible" : "btn btn-primary done-button"}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
-                      <button class="btn btn-primary"><i class="fa fa-pencil fa-sm">&nbsp;&nbsp;</i></button>
-                      <button class="btn btn-primary"><i class="fa fa-trash fa-sm">&nbsp;&nbsp;</i></button>
+                      <button class="btn btn-primary"><i class="fa fa-pencil fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                      <button class="btn btn-primary delete-button"><i class="fa fa-trash fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                     </div>
                   </div>
                 </div>
@@ -58,6 +58,31 @@ class TaskManager {
         const tasksList = document.querySelector('#taskOutput');
         tasksList.innerHTML = tasksHtml;
     }
+  //   render() {
+  //     const tasksHtmlList = [];
+  //     const tasksList = document.querySelector('#taskOutput');
+  //     const imgTag = document.querySelector('#relax');
+  //     console.log(imgTag);
+  //     if (this.tasks.length === 0) {
+  //         const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
+  //         imgTag.src = `./Images/${randomPicture}`;
+  //         // tasksList.appendChild(imgTag);
+  //         imgTag.classList.add('visible');
+  //         imgTag.classList.remove('invisible');
+  //     } else {
+  //         imgTag.classList.add('invisible');
+  //         imgTag.classList.remove('visible');
+  //         this.tasks.forEach((item) => {
+              
+  //             const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
+  //             const formattedDueDate = item.dueDate.split('-').reverse().join('-');
+  //             const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
+  //             tasksHtmlList.push(taskHtml);
+  //         });
+  //         const tasksHtml = tasksHtmlList.join('\n');
+  //         tasksList.innerHTML = tasksHtml;
+  //     }
+  // }
 
     addTask(name, description, assignedTo, dueDate, createdDay, status, rating) {
         this.currentId++;
@@ -97,5 +122,17 @@ class TaskManager {
         this.currentId = Number(currentId);
       }
       
+    }
+    deleteTask(taskId){
+      const newTasks = [];
+      this.tasks.forEach((item) => {
+        console.log(item.Id);
+        console.log(taskId);
+        if(item.Id!==taskId) {
+          console.log('hi im in if');
+          newTasks.push(item);
+        }
+      });
+      this.tasks=newTasks;
     }
 }

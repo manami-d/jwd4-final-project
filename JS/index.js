@@ -119,13 +119,18 @@ const taskList = document.querySelector('#taskOutput');
 taskList.addEventListener('click', (event) => {
     if (event.target.classList.contains('done-button')) {
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-        console.log(event.target);
         const findId = Number(parentTask.attributes['data-task-id'].value);
-        console.log(parentTask);
-        console.log(`Id to find: ${findId}`);
         const task = taskApp.getTaskById(findId);
-        console.log(task);
         task[0].status = 'Completed';
+        taskApp.save();
+        taskApp.render();
+    }
+    if (event.target.classList.contains('delete-button')){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        console.log(parentTask);
+        const findId = Number(parentTask.attributes['data-task-id'].value);
+        console.log(`Id to find: ${findId}`);
+        taskApp.deleteTask(findId);
         taskApp.save();
         taskApp.render();
     }
