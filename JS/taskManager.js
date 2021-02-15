@@ -45,44 +45,45 @@ class TaskManager {
         this.currentId = currentId;
     }
 
-    render() {
-        const tasksHtmlList = [];
+    // render() {
+    //     const tasksHtmlList = [];
         
-        this.tasks.forEach((item) => {
-          const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
-          const formattedDueDate = item.dueDate.split('-').reverse().join('-');
-          const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
-          tasksHtmlList.push(taskHtml);
-        });
-        const tasksHtml = tasksHtmlList.join('\n');
-        const tasksList = document.querySelector('#taskOutput');
-        tasksList.innerHTML = tasksHtml;
-    }
-  //   render() {
-  //     const tasksHtmlList = [];
-  //     const tasksList = document.querySelector('#taskOutput');
-  //     const imgTag = document.querySelector('#relax');
-  //     console.log(imgTag);
-  //     if (this.tasks.length === 0) {
-  //         const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
-  //         imgTag.src = `./Images/${randomPicture}`;
-  //         // tasksList.appendChild(imgTag);
-  //         imgTag.classList.add('visible');
-  //         imgTag.classList.remove('invisible');
-  //     } else {
-  //         imgTag.classList.add('invisible');
-  //         imgTag.classList.remove('visible');
-  //         this.tasks.forEach((item) => {
-              
-  //             const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
-  //             const formattedDueDate = item.dueDate.split('-').reverse().join('-');
-  //             const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
-  //             tasksHtmlList.push(taskHtml);
-  //         });
-  //         const tasksHtml = tasksHtmlList.join('\n');
-  //         tasksList.innerHTML = tasksHtml;
-  //     }
-  // }
+    //     this.tasks.forEach((item) => {
+    //       const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
+    //       const formattedDueDate = item.dueDate.split('-').reverse().join('-');
+    //       const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
+    //       tasksHtmlList.push(taskHtml);
+    //     });
+    //     const tasksHtml = tasksHtmlList.join('\n');
+    //     const tasksList = document.querySelector('#taskOutput');
+    //     tasksList.innerHTML = tasksHtml;
+    // }
+    render() {
+      const tasksHtmlList = [];
+      const tasksList = document.querySelector('#taskOutput');
+      const imgTag = document.querySelector('#relax');
+      console.log(imgTag);        
+      if (this.tasks.length === 0) {
+          tasksList.innerHTML = '';  
+          document.querySelector('#taskLabel').innerHTML = 'No Outstanding Tasks';
+          const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
+          imgTag.src = `./Images/${randomPicture}`;
+          imgTag.classList.add('d-block');
+          imgTag.classList.remove('d-none');
+      } else {
+        imgTag.classList.add('d-none');
+        imgTag.classList.remove('d-block');
+        document.querySelector('#taskLabel').innerHTML = 'Outstanding Tasks';
+          this.tasks.forEach((item) => {
+              const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
+              const formattedDueDate = item.dueDate.split('-').reverse().join('-');
+              const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
+              tasksHtmlList.push(taskHtml);
+          });
+          const tasksHtml = tasksHtmlList.join('\n');
+          tasksList.innerHTML = tasksHtml;
+      }
+  }
 
     addTask(name, description, assignedTo, dueDate, createdDay, status, rating) {
         this.currentId++;
