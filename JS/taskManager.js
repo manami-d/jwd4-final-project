@@ -1,6 +1,6 @@
 const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, status, rating) => {
     const html = `  
-      <div class="col-lg-12 col-xl-6 my-3">
+      <div class="col-lg-12 col-xl-6 my-3 d-flex justify-content-center">
         <div class="card" data-task-id="${id}" style="max-width: 30rem;">
             <div class="card-body">
               <div class="row">
@@ -26,7 +26,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                       </i>
                     </div>
                     <div class="col-6 text-end">
-                      <button class="${status === "Completed" ? "invisible" : "btn btn-primary done-button"}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                      <button class="${status === 'Completed' ? 'invisible' : 'btn btn-primary done-button'}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary"><i class="fa fa-pencil fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary delete-button"><i class="fa fa-trash fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                     </div>
@@ -45,45 +45,32 @@ class TaskManager {
         this.currentId = currentId;
     }
 
-    // render() {
-    //     const tasksHtmlList = [];
-        
-    //     this.tasks.forEach((item) => {
-    //       const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
-    //       const formattedDueDate = item.dueDate.split('-').reverse().join('-');
-    //       const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
-    //       tasksHtmlList.push(taskHtml);
-    //     });
-    //     const tasksHtml = tasksHtmlList.join('\n');
-    //     const tasksList = document.querySelector('#taskOutput');
-    //     tasksList.innerHTML = tasksHtml;
-    // }
     render() {
-      const tasksHtmlList = [];
-      const tasksList = document.querySelector('#taskOutput');
-      const imgTag = document.querySelector('#relax');
-      console.log(imgTag);        
-      if (this.tasks.length === 0) {
-          tasksList.innerHTML = '';  
-          document.querySelector('#taskLabel').innerHTML = 'No Outstanding Tasks';
-          const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
-          imgTag.src = `./Images/${randomPicture}`;
-          imgTag.classList.add('d-block');
-          imgTag.classList.remove('d-none');
-      } else {
-        imgTag.classList.add('d-none');
-        imgTag.classList.remove('d-block');
-        document.querySelector('#taskLabel').innerHTML = 'Outstanding Tasks';
-          this.tasks.forEach((item) => {
-              const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
-              const formattedDueDate = item.dueDate.split('-').reverse().join('-');
-              const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
-              tasksHtmlList.push(taskHtml);
-          });
-          const tasksHtml = tasksHtmlList.join('\n');
-          tasksList.innerHTML = tasksHtml;
-      }
-  }
+        const tasksHtmlList = [];
+        const tasksList = document.querySelector('#taskOutput');
+        const imgTag = document.querySelector('#relax');
+        console.log(imgTag);
+        if (this.tasks.length === 0) {
+            tasksList.innerHTML = '';
+            document.querySelector('#taskLabel').innerHTML = 'No Outstanding Tasks';
+            const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
+            imgTag.src = `./Images/${randomPicture}`;
+            imgTag.classList.add('d-block');
+            imgTag.classList.remove('d-none');
+        } else {
+            imgTag.classList.add('d-none');
+            imgTag.classList.remove('d-block');
+            document.querySelector('#taskLabel').innerHTML = 'Outstanding Tasks';
+            this.tasks.forEach((item) => {
+                const formattedCreatedDate = item.createdDay.split('-').reverse().join('-');
+                const formattedDueDate = item.dueDate.split('-').reverse().join('-');
+                const taskHtml = createTaskHtml(item.Id, item.name, item.description, item.assignedTo, formattedDueDate, formattedCreatedDate, item.status, item.rating);
+                tasksHtmlList.push(taskHtml);
+            });
+            const tasksHtml = tasksHtmlList.join('\n');
+            tasksList.innerHTML = tasksHtml;
+        }
+    }
 
     addTask(name, description, assignedTo, dueDate, createdDay, status, rating) {
         this.currentId++;
@@ -106,34 +93,35 @@ class TaskManager {
         console.log(foundTask);
         return foundTask;
     }
+
     save() {
-      const tasksJson = JSON.stringify(this.tasks);
-      localStorage.setItem("tasks", tasksJson);
-      const currentId = String(this.currentId);
-      localStorage.setItem("currentId", currentId);
+        const tasksJson = JSON.stringify(this.tasks);
+        localStorage.setItem('tasks', tasksJson);
+        const currentId = String(this.currentId);
+        localStorage.setItem('currentId', currentId);
     }
-    
+
     load() {
-      if (localStorage.getItem("tasks")) {
-        const tasksJson = localStorage.getItem("tasks");
-        this.tasks = JSON.parse(tasksJson);
-      }
-      if (localStorage.getItem("currentId")) {
-        const currentId = localStorage.getItem("currentId");
-        this.currentId = Number(currentId);
-      }
-      
-    }
-    deleteTask(taskId){
-      const newTasks = [];
-      this.tasks.forEach((item) => {
-        console.log(item.Id);
-        console.log(taskId);
-        if(item.Id!==taskId) {
-          console.log('hi im in if');
-          newTasks.push(item);
+        if (localStorage.getItem('tasks')) {
+            const tasksJson = localStorage.getItem('tasks');
+            this.tasks = JSON.parse(tasksJson);
         }
-      });
-      this.tasks=newTasks;
+        if (localStorage.getItem('currentId')) {
+            const currentId = localStorage.getItem('currentId');
+            this.currentId = Number(currentId);
+        }
+    }
+
+    deleteTask(taskId) {
+        const newTasks = [];
+        this.tasks.forEach((item) => {
+            console.log(item.Id);
+            console.log(taskId);
+            if (item.Id !== taskId) {
+                console.log('hi im in if');
+                newTasks.push(item);
+            }
+        });
+        this.tasks = newTasks;
     }
 }
