@@ -53,7 +53,7 @@ class TaskManager {
         if (this.tasks.length === 0) {
             tasksList.innerHTML = '';
             document.querySelector('#taskLabel').innerHTML = 'No Outstanding Tasks';
-            const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 4)}.jpg`;
+            const randomPicture = `TaskPlannerBg${Math.floor(Math.random() * 6)}.jpg`;
             imgTag.src = `./Images/${randomPicture}`;
             imgTag.classList.add('d-block');
             imgTag.classList.remove('d-none');
