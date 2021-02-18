@@ -16,7 +16,7 @@ describe('TaskManager', () => {
         status: 'In Progress',
         rating: 3
     } ];
-      assert.deepEqual(result, expected);
+      assert.deepStrictEqual(result, expected);
       
     });
   });
@@ -27,10 +27,27 @@ describe('TaskManager', () => {
       task.addTask('cleaning', 'cleaning the house', 'manami', '2021-02-23', '2021-02-20', 'In Progress', 3);
       task.addTask('cleaning1', 'cleaning the house', 'manami', '2021-02-23', '2021-02-20', 'In Progress', 3);
       task.addTask('cleaning2', 'cleaning the house', 'manami', '2021-02-23', '2021-02-20', 'In Progress', 3);
-      const expected = task[0];
-      const result = task.deleteTask(1);
-      console.log(result);
-      assert.deepEqual(result, expected);
+      task.deleteTask(2);
+      console.log(task.tasks);
+      assert.deepStrictEqual(task.tasks, [{
+        Id:1,
+        name: 'cleaning',
+        description: 'cleaning the house',
+        assignedTo: 'manami',
+        dueDate: '2021-02-23',
+        createdDay: '2021-02-20',
+        status: 'In Progress',
+        rating: 3
+      }, { 
+      Id:3,
+      name: 'cleaning2',
+      description: 'cleaning the house',
+      assignedTo: 'manami',
+      dueDate: '2021-02-23',
+      createdDay: '2021-02-20',
+      status: 'In Progress',
+      rating: 3
+      }]);
     });
   });
 
@@ -58,7 +75,7 @@ describe('TaskManager', () => {
     );
       const result = task.getTaskById(1);
       const expected = 1;
-      assert.equal(result[0].Id, expected);
+      assert.strictEqual(result[0].Id, expected);
     });
   });
 });

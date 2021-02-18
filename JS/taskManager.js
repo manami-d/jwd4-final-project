@@ -88,9 +88,9 @@ class TaskManager {
     }
 
     getTaskById(taskId) {
-        console.log(taskId);
+        // console.log(taskId);
         const foundTask = this.tasks.filter((x) => x.Id === taskId);
-        console.log(foundTask);
+        // console.log(foundTask);
         return foundTask;
     }
 
