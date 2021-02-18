@@ -115,14 +115,15 @@ class TaskManager {
     deleteTask(taskId) {
         const newTasks = [];
         this.tasks.forEach((item) => {
-            console.log(item.Id);
-            console.log(taskId);
+            // console.log(item.Id);
+            // console.log(taskId);
             if (item.Id !== taskId) {
-                console.log('hi im in if');
+                // console.log('hi im in if');
                 newTasks.push(item);
             }
         });
         this.tasks = newTasks;
     }
 }
+module.exports = TaskManager;
 
