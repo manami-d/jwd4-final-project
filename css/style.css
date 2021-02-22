@@ -81,3 +81,10 @@
     text-shadow: 0 0 5px #09f;
   }
   /* End of rating selection css */
+
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
