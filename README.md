@@ -4,7 +4,7 @@
 This is the final project of Generation Australia's 12 weeks bootcamp, creating a task app using HTML, CSS, JavaScript, Bootstrap, and Mocha/Chai for unit testing.
 
 ### Deployed Site
-[To Do List App](https://jdw4-todolist-app.netlify.app/)
+[To Do List App](https://jwd4-todolist-app.netlify.app/)
 
 ## Instruction
 1. Adding a Task
