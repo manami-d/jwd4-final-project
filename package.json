@@ -1,0 +1,22 @@
+{
+  "name": "jwd4-final-project",
+  "version": "1.0.0",
+  "description": "| Screenshots         |              Mobile            |           Desktop             | | ------------------- |:------------------------------:| ----------------------------- |  | Home - Top          | ![](./assets/mobile-img-1.png) | ![](./assets/desktop-img.png) |  | Home - Bottom       | ![](./assets/mobile-img-2.png) | ![]() |",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manami-d/jwd4-final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manami-d/jwd4-final-project/issues"
+  },
+  "homepage": "https://github.com/manami-d/jwd4-final-project#readme",
+  "devDependencies": {
+    "mocha": "^8.3.0"
+  }
+}

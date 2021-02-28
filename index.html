@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- TO DO LIST APP -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planner</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src ="./JS/taskManager.js" type="text/javascript" defer></script>
+    <script src="./JS/index.js" type="text/javascript" defer></script>
+</head>
+
+<body>
+    <!-- header section -->
+    <header>
+        <div class="container-fluid py-3 bg-header">
+            <h1 class="text-center text-light">To Do List App</h1>
+        </div>
+    </header>
+
+    <!-- main section -->
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- create new form column -->
+                <div class="col-sm-12 col-md-4 py-3 bg-form">
+                    <form id="todo-form" name="todoform" class="needs-validation">
+                        <!-- title for the form -->
+                        <div class="row pt-3">
+                            <h1 class="text-center">Create a New List</h1>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-9">
+                                <!-- task name label & input -->
+                                <div class="row py-3">
+                                    <label class="pb-2 fw-bold" for="InputTaskName">Task Name:</label>
+                                    <input type="text" class="form-control" id="InputTaskName"
+                                    aria-describedby="TaskName" placeholder="Enter Task Name" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Task Name needs to be 5 characters long or more
+                                    </div>    
+                                </div>
+                                
+                                <!-- description label & input -->
+                                <div class="row py-3">
+                                    <label class="pb-2 fw-bold" for="InputDescription">Description:</label>
+                                    <input type="text" class="form-control" id="InputTaskDescription"
+                                    aria-describedby="TaskDescription" placeholder="Enter Task Description" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Description needs to be 5 characters long or more
+                                    </div>    
+                                </div>
+                                
+                                <!-- Due date label & input -->
+                                <div class="row py-3">
+                                    <label class="pb-2 fw-bold" for="duedate">Due date:</label>
+                                    <input class="py-1 form-control" type="date" id="duedate" name="duedate" value="YYYY-MM-DD" max="2030-12-31" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Please select today's date or future date
+                                    </div>
+                                </div>
+                                
+                                <!-- assigned to label & input -->
+                                <div class="row py-3">
+                                    <!-- E -->
+                                    <label class="pb-2 fw-bold" for="assigned-name">Assigned to:</label>
+                                    <input class="py-1 form-control" type="text" id="assigned-name" name="assigned-name" placeholder="Enter Assignee's Name" required>
+                                    <div class="valid-feedback">Looks Good</div>
+                                    <div class="invalid-feedback">
+                                        Assigned Name needs to be 5 characters long or more
+                                    </div>    
+                                </div>
+                                
+                                <!-- Progress label & input     -->
+                                <div class="row py-3">
+                                    <!-- F -->
+                                    <select class="py-2 form-control" id="task-status" required>
+                                        <option disabled selected value>Select task status</option>
+                                        <option>In Progress</option>
+                                        <option>Completed</option>
+                                        <option>Postponed</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- rating -->
+                                <div class="row py-3 justify-items-center">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <p class="fw-bold"> How Important? </p>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="rating">
+                                            <label>
+                                                <input type="radio" name="stars" value="1" />
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="2" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="3" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="4" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="stars" value="5" />
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                                <span class="icon">★</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <!-- button -->
+                                <div class="row py-3 justify-content-center">
+                                    <button type="submit" class="btn btn-primary h-100% w-50">Add!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- outstanding task display column -->
+                <div class="col-sm-12 col-md-8 pb-3 overflow-scroll" style="height:90vh;">
+                    <div class="row py-2">
+                        <h1 class="text-center" id="taskLabel">Outstanding Tasks</h1>
+                    </div>
+                    <div class="row" id="taskOutput">
+                    </div>
+                    <div class="row">
+                    <img id="relax" src="./Images/TaskPlannerBg2.jpg" class="img-fluid mx-auto" style="width:500px;height:auto;opacity:0.7" alt="relaxing man">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- footer section -->
+    <footer>
+        <div class="container-fluid">
+            <div class="row bg-header text-light p-3 fs-5">
+                <div class="col-6 col-lg-9 text-start align-self-center">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><i class="fa fa-phone fa-sm"><span class="d-none d-lg-inline fs-5">
+                                    02 6543 8976</span> </i></li>
+                        <li class="list-inline-item"><i class="fa fa-edit fa-sm"><span class="d-none d-lg-inline fs-5">
+                                    help@todolistcompany.com.au </span> </i></li>
+                        <li class="list-inline-item"><i class="fa fa-building fa-sm"><span
+                                    class="d-none d-lg-inline fs-5"> 17 Elizabeth Street, Sydney, NSW 2000 Australia
+                                </span></i></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3 text-end align-self-center">
+                    <p class="m-0"> &copy; 2020 MaWiZacZoe</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
