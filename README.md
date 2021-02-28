@@ -3,6 +3,9 @@
 ## Task Description
 This is the final project of Generation Australia's 12 weeks bootcamp, creating a task app using HTML, CSS, JavaScript, Bootstrap, and Mocha/Chai for unit testing.
 
+### Deployed Site
+[To Do List App](https://jdw4-todolist-app.netlify.app/)
+
 ## Instruction
 1. Adding a Task
    User can add new task via the left side form by entering the task name, description, due date and the assignee name as well as the importance rating for the task. By default, rating will be 1 if not selected.
