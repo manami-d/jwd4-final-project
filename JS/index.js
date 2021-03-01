@@ -8,22 +8,19 @@ const taskDueDate = document.querySelector('#duedate');
 const taskAssign = document.querySelector('#assigned-name');
 const taskStatus = document.querySelector('#task-status');
 let rate = 1;
+let selectedId = 0;
 
-// Disable selection of date prior to today's date in html date selector
+// Disable selection of date prior to today's date in HTML date selector
 const todayInput = new Date();
 let todayDay = todayInput.getDate().toString();
 let todayMonth = (todayInput.getMonth() + 1).toString();
 const todayYear = todayInput.getFullYear().toString();
-console.log(todayInput);
-console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);
-console.log(todayMonth.length);
 if (todayDay.length < 2) { todayDay = `0${todayDay}`; }
-if (todayMonth.length < 2) { todayMonth = `0${todayMonth}`; }
-console.log(`Day: ${todayDay}, Month: ${todayMonth}, Year: ${todayYear}`);
+if (todayMonth.length < 2) { todayMonth = `0${todayMonth}`}; 
 const today = `${todayYear}-${todayMonth}-${todayDay}`;
-console.log(today);
 document.getElementById('duedate').setAttribute('min', today);
 
+// Method to validate date input 
 function isValidDate(dateString) {
     // Date format: YYYY-MM-DD
     const datePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
@@ -51,17 +48,11 @@ function isValidDate(dateString) {
     // You made it through!
     return true;
 }
-// validating date input
+
+// Validating user input date and format 
 const validateDate = (dateString) => {
     const tdyDate = new Date(today);
-    console.log(tdyDate);
     const inDate = new Date(dateString.value);
-    console.log(inDate);
-    if (+inDate < +tdyDate) {
-        console.log('Smalleer!');
-    } else {
-        console.log('looks ok!!');
-    }
     if (isValidDate(dateString.value) && +inDate >= +tdyDate) {
         dateString.classList.add('is-valid');
         dateString.classList.remove('is-invalid');
@@ -71,15 +62,15 @@ const validateDate = (dateString) => {
     }
 };
 
-// getting the rating value from user
+// Getting the rating value from user
 document.forms.todoform.stars.forEach((radio) => {
     radio.addEventListener('change', () => {
         rate = document.forms.todoform.stars.value;
     });
 });
 
-// function to validate task name, description and asignned-to input from user,
-// minimum 5 characters.
+// Function to validate task name, description and assigned-to input from user
+// Minimum 5 characters.
 const validFormFieldInput = (data) => {
     if (data.value.length < 5) {
         data.classList.add('is-invalid');
@@ -90,6 +81,7 @@ const validFormFieldInput = (data) => {
     }
 };
 
+// Method to clear the form 
 const clearForm = () => {
     formValidator.reset();
     taskInput.classList.remove('is-valid');
@@ -98,7 +90,7 @@ const clearForm = () => {
     taskDueDate.classList.remove('is-valid');
 };
 
-// Validating inputs & selection from user
+// Update or add task input from user if valid
 formValidator.addEventListener('submit', (event) => {
     event.preventDefault();
     validFormFieldInput(taskInput);
@@ -106,8 +98,20 @@ formValidator.addEventListener('submit', (event) => {
     validFormFieldInput(taskAssign);
     validateDate(taskDueDate);
     if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid') && taskDueDate.classList.contains('is-valid')) {
-        taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
-        console.log(taskApp);
+        // Add new task if button is inner text is "Add!" otherwise perform an update
+        if (document.querySelector("#add-task").innerText === "Add!") {
+            taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
+        } else {
+            const task = taskApp.getTaskById(selectedId);
+            task[0].name = taskInput.value;
+            task[0].description = taskDesc.value;
+            task[0].assignedTo = taskAssign.value;
+            task[0].dueDate = taskDueDate.value;
+            task[0].status = taskStatus.value;
+            task[0].rating = rate; 
+            document.getElementById("add-task").innerHTML = "Add!";
+            document.getElementById("title").innerHTML = "Create a New Task";
+        }
         taskApp.save();
         taskApp.render();
         clearForm();
@@ -116,6 +120,7 @@ formValidator.addEventListener('submit', (event) => {
 
 const taskList = document.querySelector('#taskOutput');
 
+// Event listener to complete, delete and edit the task cards
 taskList.addEventListener('click', (event) => {
     if (event.target.classList.contains('done-button')) {
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
@@ -127,10 +132,19 @@ taskList.addEventListener('click', (event) => {
     }
     if (event.target.classList.contains('delete-button')){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-        console.log(parentTask);
         const findId = Number(parentTask.attributes['data-task-id'].value);
-        console.log(`Id to find: ${findId}`);
         taskApp.deleteTask(findId);
+        taskApp.save();
+        taskApp.render();
+    }
+    if (event.target.classList.contains('edit-button')){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        const findId = Number(parentTask.attributes['data-task-id'].value);
+        selectedId = findId; 
+        const task = taskApp.getTaskById(findId);
+        taskApp.updateTask(task);
+        document.getElementById("add-task").innerHTML = "Update!";
+        document.getElementById("title").innerHTML = "Edit Existing Task";
         taskApp.save();
         taskApp.render();
     }

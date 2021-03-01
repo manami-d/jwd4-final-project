@@ -1,3 +1,4 @@
+// Template for displaying outstanding tasks 
 const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, status, rating) => {
     const html = `  
       <div class="col-lg-12 col-xl-6 my-3 d-flex justify-content-center">
@@ -27,7 +28,7 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
                     </div>
                     <div class="col-6 text-end">
                       <button class="${status === 'Completed' ? 'invisible' : 'btn btn-primary done-button'}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
-                      <button class="btn btn-primary"><i class="fa fa-pencil fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                      <button class="btn btn-primary edit-button"><i class="fa fa-pencil fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                       <button class="btn btn-primary delete-button"><i class="fa fa-trash fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
                     </div>
                   </div>
@@ -39,17 +40,19 @@ const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, 
   `;
     return html;
 };
+
+// Constructor for TaskManager class 
 class TaskManager {
     constructor(currentId = 0) {
         this.tasks = [];
         this.currentId = currentId;
     }
 
+    // Displaying user input into task card
     render() {
         const tasksHtmlList = [];
         const tasksList = document.querySelector('#taskOutput');
         const imgTag = document.querySelector('#relax');
-        console.log(imgTag);
         if (this.tasks.length === 0) {
             tasksList.innerHTML = '';
             document.querySelector('#taskLabel').innerHTML = 'No Outstanding Tasks';
@@ -72,6 +75,7 @@ class TaskManager {
         }
     }
 
+    // Adding new task method
     addTask(name, description, assignedTo, dueDate, createdDay, status, rating) {
         this.currentId++;
         const task = {
@@ -87,13 +91,13 @@ class TaskManager {
         this.tasks.push(task);
     }
 
+    // Retrieving task by Id
     getTaskById(taskId) {
-        // console.log(taskId);
         const foundTask = this.tasks.filter((x) => x.Id === taskId);
-        // console.log(foundTask);
         return foundTask;
     }
 
+    // Save tasks to local storage
     save() {
         const tasksJson = JSON.stringify(this.tasks);
         localStorage.setItem('tasks', tasksJson);
@@ -101,6 +105,7 @@ class TaskManager {
         localStorage.setItem('currentId', currentId);
     }
 
+    // Retrieving tasks from local storage 
     load() {
         if (localStorage.getItem('tasks')) {
             const tasksJson = localStorage.getItem('tasks');
@@ -112,18 +117,24 @@ class TaskManager {
         }
     }
 
+    // Deleting task by Id 
     deleteTask(taskId) {
         const newTasks = [];
         this.tasks.forEach((item) => {
-            // console.log(item.Id);
-            // console.log(taskId);
             if (item.Id !== taskId) {
-                // console.log('hi im in if');
                 newTasks.push(item);
             }
         });
         this.tasks = newTasks;
     }
-}
-module.exports = TaskManager;
 
+    // Displaying task to be edited in the form 
+    updateTask(task) {
+        document.querySelector('#InputTaskName').value = task[0].name;
+        document.querySelector('#InputTaskDescription').value = task[0].description;
+        document.querySelector('#duedate').value = task[0].dueDate;
+        document.querySelector('#assigned-name').value = task[0].assignedTo;
+        document.querySelector('#task-status').value = task[0].status;
+        document.forms.todoform.stars.value = task[0].rating;
+    }
+}
