@@ -16,11 +16,11 @@ let todayDay = todayInput.getDate().toString();
 let todayMonth = (todayInput.getMonth() + 1).toString();
 const todayYear = todayInput.getFullYear().toString();
 if (todayDay.length < 2) { todayDay = `0${todayDay}`; }
-if (todayMonth.length < 2) { todayMonth = `0${todayMonth}`}; 
+if (todayMonth.length < 2) { todayMonth = `0${todayMonth}`; }
 const today = `${todayYear}-${todayMonth}-${todayDay}`;
 document.getElementById('duedate').setAttribute('min', today);
 
-// Method to validate date input 
+// Method to validate date input
 function isValidDate(dateString) {
     // Date format: YYYY-MM-DD
     const datePattern = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
@@ -49,7 +49,7 @@ function isValidDate(dateString) {
     return true;
 }
 
-// Validating user input date and format 
+// Validating user input date and format
 const validateDate = (dateString) => {
     const tdyDate = new Date(today);
     const inDate = new Date(dateString.value);
@@ -81,7 +81,7 @@ const validFormFieldInput = (data) => {
     }
 };
 
-// Method to clear the form 
+// Method to clear the form
 const clearForm = () => {
     formValidator.reset();
     taskInput.classList.remove('is-valid');
@@ -99,7 +99,7 @@ formValidator.addEventListener('submit', (event) => {
     validateDate(taskDueDate);
     if (taskInput.classList.contains('is-valid') && taskDesc.classList.contains('is-valid') && taskAssign.classList.contains('is-valid') && taskDueDate.classList.contains('is-valid')) {
         // Add new task if button is inner text is "Add!" otherwise perform an update
-        if (document.querySelector("#add-task").innerText === "Add!") {
+        if (document.querySelector('#add-task').innerText === 'Add!') {
             taskApp.addTask(taskInput.value, taskDesc.value, taskAssign.value, taskDueDate.value, today, taskStatus.value, rate);
         } else {
             const task = taskApp.getTaskById(selectedId);
@@ -108,9 +108,9 @@ formValidator.addEventListener('submit', (event) => {
             task[0].assignedTo = taskAssign.value;
             task[0].dueDate = taskDueDate.value;
             task[0].status = taskStatus.value;
-            task[0].rating = rate; 
-            document.getElementById("add-task").innerHTML = "Add!";
-            document.getElementById("title").innerHTML = "Create a New Task";
+            task[0].rating = rate;
+            document.getElementById('add-task').innerHTML = 'Add!';
+            document.getElementById('title').innerHTML = 'Create a New Task';
         }
         taskApp.save();
         taskApp.render();
@@ -123,28 +123,28 @@ const taskList = document.querySelector('#taskOutput');
 // Event listener to complete, delete and edit the task cards
 taskList.addEventListener('click', (event) => {
     if (event.target.classList.contains('done-button')) {
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const findId = Number(parentTask.attributes['data-task-id'].value);
         const task = taskApp.getTaskById(findId);
         task[0].status = 'Completed';
         taskApp.save();
         taskApp.render();
     }
-    if (event.target.classList.contains('delete-button')){
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+    if (event.target.classList.contains('delete-button')) {
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const findId = Number(parentTask.attributes['data-task-id'].value);
         taskApp.deleteTask(findId);
         taskApp.save();
         taskApp.render();
     }
-    if (event.target.classList.contains('edit-button')){
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+    if (event.target.classList.contains('edit-button')) {
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const findId = Number(parentTask.attributes['data-task-id'].value);
-        selectedId = findId; 
+        selectedId = findId;
         const task = taskApp.getTaskById(findId);
         taskApp.updateTask(task);
-        document.getElementById("add-task").innerHTML = "Update!";
-        document.getElementById("title").innerHTML = "Edit Existing Task";
+        document.getElementById('add-task').innerHTML = 'Update!';
+        document.getElementById('title').innerHTML = 'Edit Existing Task';
         taskApp.save();
         taskApp.render();
     }
