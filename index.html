@@ -40,7 +40,7 @@
                     <form id="todo-form" name="todoform" class="needs-validation">
                         <!-- title for the form -->
                         <div class="row pt-3">
-                            <h1 class="text-center">Create a New List</h1>
+                            <h1 id ="title" class="text-center">Create a New Task</h1>
                         </div>
 
                         <div class="row justify-content-center">
@@ -79,7 +79,6 @@
                                 
                                 <!-- assigned to label & input -->
                                 <div class="row py-3">
-                                    <!-- E -->
                                     <label class="pb-2 fw-bold" for="assigned-name">Assigned to:</label>
                                     <input class="py-1 form-control" type="text" id="assigned-name" name="assigned-name" placeholder="Enter Assignee's Name" required>
                                     <div class="valid-feedback">Looks Good</div>
@@ -88,9 +87,8 @@
                                     </div>    
                                 </div>
                                 
-                                <!-- Progress label & input     -->
+                                <!-- Progress label & input -->
                                 <div class="row py-3">
-                                    <!-- F -->
                                     <select class="py-2 form-control" id="task-status" required>
                                         <option disabled selected value>Select task status</option>
                                         <option>In Progress</option>
@@ -140,9 +138,9 @@
                                     </div>
                                 </div>
                               
-                                <!-- button -->
+                                <!-- Submit button -->
                                 <div class="row py-3 justify-content-center">
-                                    <button type="submit" class="btn btn-primary h-100% w-50">Add!</button>
+                                    <button type="submit" id= "add-task" class="btn btn-primary h-100% w-50">Add!</button>
                                 </div>
                             </div>
                         </div>
