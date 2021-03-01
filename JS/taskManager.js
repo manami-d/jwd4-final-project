@@ -1,47 +1,47 @@
-// Template for displaying outstanding tasks 
+// Template for displaying outstanding tasks
 const createTaskHtml = (id, name, description, assignedTo, dueDate, createdDay, status, rating) => {
     const html = `  
-      <div class="col-lg-12 col-xl-6 my-3 d-flex justify-content-center">
-        <div class="card" data-task-id="${id}" style="max-width: 30rem;">
+    <div class="col-lg-12 col-xl-6 my-3 d-flex justify-content-center">
+        <div class="card" data-task-id="${id}" style="width: 30rem;">
             <div class="card-body">
-              <div class="row">
-                <div class="col-6">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text">${description}</p>
-                    <p class="card-text">${assignedTo}</p>
-                </div>
-                <div class="col-6 text-end">
-                    <h5>${'⭐'.repeat(rating)}</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Created : ${createdDay}</li>
-                        <li class="list-group-item">Due Date : ${dueDate}</li>
-                    </ul>
-                </div>
-                <div class="card-footer bg-primary text-light">
-                  <div class="row">
+                <div class="row">
                     <div class="col-6">
-                      <i class="fa fa-hourglass fa-sm">
-                        <span class="d-inline fs-5">
-                          ${status}
-                        </span>
-                      </i>
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${description}</p>
+                        <p class="card-text">${assignedTo}</p>
                     </div>
                     <div class="col-6 text-end">
-                      <button class="${status === 'Completed' ? 'invisible' : 'btn btn-primary done-button'}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
-                      <button class="btn btn-primary edit-button"><i class="fa fa-pencil fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
-                      <button class="btn btn-primary delete-button"><i class="fa fa-trash fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                        <h5>${'⭐'.repeat(rating)}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Created : ${createdDay}</li>
+                            <li class="list-group-item">Due Date : ${dueDate}</li>
+                        </ul>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </div>        
+            <div class="card-footer bg-primary text-light">
+                <div class="row">
+                    <div class="col-6 align-self-center">
+                        <i class="fa fa-hourglass fa-sm">
+                            <span class="d-inline fs-5">
+                            ${status}
+                            </span>
+                        </i>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="${status === 'Completed' ? 'invisible' : 'btn btn-primary done-button'}"><i class="fa fa-check fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                        <button class="btn btn-primary edit-button"><i class="fa fa-pencil fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                        <button class="btn btn-primary delete-button"><i class="fa fa-trash fa-sm" style="pointer-events: none;">&nbsp;&nbsp;</i></button>
+                    </div>
+                </div>
             </div>
-          </div>
-      </div>
-  `;
+        </div>
+    </div>
+    `;
     return html;
 };
 
-// Constructor for TaskManager class 
+// Constructor for TaskManager class
 class TaskManager {
     constructor(currentId = 0) {
         this.tasks = [];
@@ -105,7 +105,7 @@ class TaskManager {
         localStorage.setItem('currentId', currentId);
     }
 
-    // Retrieving tasks from local storage 
+    // Retrieving tasks from local storage
     load() {
         if (localStorage.getItem('tasks')) {
             const tasksJson = localStorage.getItem('tasks');
@@ -117,7 +117,7 @@ class TaskManager {
         }
     }
 
-    // Deleting task by Id 
+    // Deleting task by Id
     deleteTask(taskId) {
         const newTasks = [];
         this.tasks.forEach((item) => {
@@ -128,7 +128,7 @@ class TaskManager {
         this.tasks = newTasks;
     }
 
-    // Displaying task to be edited in the form 
+    // Displaying task to be edited in the form
     updateTask(task) {
         document.querySelector('#InputTaskName').value = task[0].name;
         document.querySelector('#InputTaskDescription').value = task[0].description;
