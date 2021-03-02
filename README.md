@@ -30,7 +30,7 @@ This project is created by:
 - Willy Sufianto
 - Zoe Shi
 
-##Challenges
+## Challenges
 
 - Design of the layout - translating the idea to the website
 - The footer floating (div validation)
@@ -39,7 +39,7 @@ This project is created by:
 - GitHub issues
 - Reliant to a technical leader (Willy)
 
-##Cool features implemented
+## Cool features implemented
 
 - Disable past dates and take into consideration leap years
 - Star rating
