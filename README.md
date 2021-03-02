@@ -29,3 +29,21 @@ This project is created by:
 - Zachary Guest
 - Willy Sufianto
 - Zoe Shi
+
+##Challenges
+
+- Design of the layout - translating the idea to the website
+- The footer floating (div validation)
+- Validation of the prior dates (can't select previous dates)
+- Pair programming (instead of working individually) - communicating/expressing yourself in technical terms
+- GitHub issues
+- Reliant to a technical leader (Willy)
+
+##Cool features implemented
+
+- Disable past dates and take into consideration leap years
+- Star rating
+- Edit button plus the change of heading and button when editing
+- Background photos if no outstanding tasks
+- Displaying options through icons instead of buttons
+- Created date in the card
